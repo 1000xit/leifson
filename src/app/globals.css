@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Removed Oskari Font Definitions - Handled by next/font in layout.tsx */
+
+body {
+  background-color: #FFFFFF; /* Ensure plain white background */
+  /* You can add default text color here if needed, e.g., color: #000000; */
+}
+
+/* Removed .hero-section-gradient::after rule */
+
+/* Minimal base layer adjustments if necessary */
+/* @layer base {
+  body {
+    @apply font-sans; // This will use the default sans font from Tailwind/Geist
+  }
+} */
+
+/* Ensure these are NOT conflicting with next/font. 
+   next/font provides these variables globally from layout.tsx setup. 
+   The @apply in @layer base will use them correctly. */
+/*
+:root {
+  --background: #FFFFFF;
+  --foreground: #00112A;
+  --primary: #00112A;
+  --primary-light: #C7E4FF;
+  --white: #FFFFFF;
+  --subheader: #f9f9f9;
+  --font-geist-sans: '__GeistSans_097575','__GeistSans_Fallback_097575'; 
+  --font-geist-mono: '__GeistMono_18c561','__GeistMono_Fallback_18c561'; 
+  --font-frank-ruhl-libre: '__Frank_Ruhl_Libre_05f941','__Frank_Ruhl_Libre_Fallback_05f941';
+}
+*/
+
+@layer base {
+  body {
+    @apply font-sans; /* This will use --font-geist-sans from layout.tsx */
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-serif; /* This will use --font-frank-ruhl-libre from layout.tsx */
+  }
+} 
