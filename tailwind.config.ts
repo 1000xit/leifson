@@ -32,6 +32,9 @@ const config = {
   				white: '#FFFFFF',
   				'dark-text': '#00112A',
   				subheader: '#f9f9f9',
+  				'service-card-blue': '#3CA1FF',
+  				'service-card-green': '#50985B',
+  				'service-card-yellow': '#FFD95D',
   			},
   			primary: {
   				DEFAULT: 'hsl(var(--primary) / <alpha-value>)',

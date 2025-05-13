@@ -3,51 +3,152 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Phone, Mail, Clock, MapPin, ExternalLink, ChevronRight } from 'lucide-react';
 
 const Footer: React.FC = () => {
+  const currentYear = new Date().getFullYear();
+  
   return (
-    <footer className="relative bg-[#F9F9F9] overflow-hidden font-sans z-50 h-[450px]">
-      {/* Solid background div */}
-      <div className="absolute inset-0 bg-[#F9F9F9] -z-10"></div>
-      
-      {/* Use a narrower max width to align with logo */}
-      <div className="w-full max-w-4xl mx-auto h-full flex flex-col justify-between px-4">
-        {/* Top content area */}
-        <div className="w-full pt-10 pb-24">
-          <div className="flex justify-between items-start w-full">
-            {/* Left Side: Logo and Tagline */}
-            <div className="flex flex-col items-start space-y-2">
-              <svg width="36" height="48" viewBox="0 0 112 147" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M21.7036 41.3086C25.2768 31.3858 25.6261 19.7041 24.3513 8.98464C24.0326 6.28383 24.6047 4.10193 26.0674 2.43895C28.09 0.140606 31.3506 -0.631636 34.2434 0.545117C36.0024 1.25607 37.363 2.86798 38.9627 4.19182C40.9566 5.84663 44.0395 8.80077 48.2112 13.0542C69.0128 34.2787 85.7876 65.0336 71.9485 94.8508C68.0505 103.241 61.9768 112.373 58.2014 119.048C54.5976 125.428 51.8947 132.072 51.8518 139.463C51.8477 139.751 51.7981 140.037 51.7047 140.309C50.2746 144.53 47.4145 146.328 43.1242 145.702C42.8108 145.658 42.502 145.573 42.2049 145.451C19.8772 136.209 -0.440157 122.823 0.00725378 95.3902C0.19725 83.3775 4.08912 72.5844 10.4571 62.4104C14.8821 55.3315 19.0069 48.792 21.7036 41.3086ZM39.2936 25.2018C38.9382 33.9457 37.126 42.2422 33.8573 50.0913C30.9461 57.066 26.6436 63.8446 22.6414 70.2984C17.8363 78.0453 14.7963 85.9884 14.496 95.2369C13.9505 111.895 24.5168 120.739 38.3682 127.775C38.4125 127.798 38.461 127.811 38.5106 127.813C38.5602 127.816 38.6098 127.809 38.6564 127.792C38.703 127.774 38.7455 127.748 38.7813 127.713C38.8172 127.679 38.8455 127.637 38.8646 127.591C38.9096 127.477 39.2221 126.511 39.8023 124.693C43.7187 112.404 53.145 101.262 59.1207 88.0293C69.4296 65.1746 54.8243 41.5476 39.6614 25.0669C39.6325 25.0372 39.5956 25.0166 39.5552 25.0074C39.5149 24.9982 39.4727 25.0009 39.4338 25.0151C39.3949 25.0294 39.361 25.0546 39.3361 25.0877C39.3112 25.1208 39.2965 25.1604 39.2936 25.2018Z" fill="black"/>
-                <path d="M72.5528 16.7669C75.3843 16.626 77.4314 18.1276 79.2517 20.5607C96.7927 43.9242 104.711 72.6443 93.6424 100.047C90.8885 106.874 87.6238 113.071 83.8484 118.636C79.503 125.04 69.4025 121.173 70.757 113.205C70.8959 112.376 71.564 111.03 72.7611 109.167C76.9002 102.707 80.0301 95.9526 82.1507 88.9043C87.9486 69.6411 81.3355 48.5883 70.1196 32.6837C68.7038 30.6735 66.1848 27.9522 65.6577 25.4026C64.7384 20.9285 68.0541 16.9815 72.5528 16.7669Z" fill="black"/>
-                <path d="M101.027 129.284C96.663 135.18 91.5208 140.33 85.6003 144.735C79.1526 149.534 71.185 142.522 74.8808 135.37C75.2444 134.667 76.2618 133.664 77.933 132.36C82.3499 128.916 86.1641 125.02 89.3757 120.673C92.5913 116.325 95.1982 111.534 97.1962 106.3C97.9521 104.323 98.6119 103.056 99.1758 102.5C104.931 96.874 113.971 102.433 111.274 110.008C108.802 116.958 105.386 123.384 101.027 129.284Z" fill="black"/>
-              </svg>
-              <p className="text-black text-base font-medium">Powering Interactive Fandom</p>
+    <footer className="bg-liefson-primary text-white">
+      {/* Main Footer Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {/* Logo & About Column */}
+          <div className="space-y-6">
+            <div className="flex items-center">
+              <Image 
+                src="/leifsoniconwhite.svg" 
+                alt="Leifson Insurance" 
+                width={40} 
+                height={45} 
+                className="w-auto h-10"
+              />
             </div>
-
-            {/* Right Side: Links */}
-            <div className="flex flex-col items-end space-y-2">
-              <Link href="#contact" className="text-black hover:text-gray-700 transition-colors text-base md:text-lg font-medium">
-                Contact Us
+            <p className="text-liefson-subheader text-sm leading-relaxed pr-4">
+              Protecting families across America with personalized insurance solutions since 2015.
+            </p>
+            <div className="flex space-x-4 pt-2">
+              <Link href="https://twitter.com" className="text-white/70 hover:text-white transition-colors duration-200" aria-label="Twitter">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                </svg>
               </Link>
-              <Link href="#get-started" className="text-black hover:text-gray-700 transition-colors text-base md:text-lg font-medium">
-                Get Started
+              <Link href="https://linkedin.com" className="text-white/70 hover:text-white transition-colors duration-200" aria-label="LinkedIn">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+              </Link>
+              <Link href="https://facebook.com" className="text-white/70 hover:text-white transition-colors duration-200" aria-label="Facebook">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
+                </svg>
               </Link>
             </div>
           </div>
+
+          {/* Contact Information Column */}
+          <div className="space-y-6">
+            <h3 className="text-lg font-medium tracking-wide">Contact Us</h3>
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <Phone className="w-5 h-5 mr-3 mt-0.5 text-liefson-primary-light flex-shrink-0" />
+                <span>678-713-6452</span>
+              </li>
+              <li className="flex items-start">
+                <Mail className="w-5 h-5 mr-3 mt-0.5 text-liefson-primary-light flex-shrink-0" />
+                <a href="mailto:colby@leifson.com" className="hover:text-liefson-primary-light transition-colors">
+                  colby@leifson.com
+                </a>
+              </li>
+              <li className="flex items-start">
+                <Clock className="w-5 h-5 mr-3 mt-0.5 text-liefson-primary-light flex-shrink-0" />
+                <span>Monday–Friday, 9 AM–6 PM ET <br/> Weekends by appointment</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Quick Links Column */}
+          <div className="space-y-6 lg:pl-6">
+            <h3 className="text-lg font-medium tracking-wide">Services</h3>
+            <ul className="space-y-3">
+              <li>
+                <Link href="#" className="flex items-center text-white/80 hover:text-white transition-colors">
+                  <ChevronRight className="w-4 h-4 mr-1 text-liefson-primary-light" />
+                  <span>Term Life Insurance</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="flex items-center text-white/80 hover:text-white transition-colors">
+                  <ChevronRight className="w-4 h-4 mr-1 text-liefson-primary-light" />
+                  <span>Permanent Life Insurance</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="flex items-center text-white/80 hover:text-white transition-colors">
+                  <ChevronRight className="w-4 h-4 mr-1 text-liefson-primary-light" />
+                  <span>Medicare Solutions</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="flex items-center text-white/80 hover:text-white transition-colors">
+                  <ChevronRight className="w-4 h-4 mr-1 text-liefson-primary-light" />
+                  <span>ACA/Health Insurance</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Pages Column */}
+          <div className="space-y-6">
+            <h3 className="text-lg font-medium tracking-wide">Pages</h3>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/" className="flex items-center text-white/80 hover:text-white transition-colors">
+                  <ChevronRight className="w-4 h-4 mr-1 text-liefson-primary-light" />
+                  <span>Home</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="flex items-center text-white/80 hover:text-white transition-colors">
+                  <ChevronRight className="w-4 h-4 mr-1 text-liefson-primary-light" />
+                  <span>About Us</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="flex items-center text-white/80 hover:text-white transition-colors">
+                  <ChevronRight className="w-4 h-4 mr-1 text-liefson-primary-light" />
+                  <span>Privacy Policy</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="flex items-center text-white/80 hover:text-white transition-colors">
+                  <ChevronRight className="w-4 h-4 mr-1 text-liefson-primary-light" />
+                  <span>Contact</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
-        
-        {/* Nero Gradient Text - larger size */}
-        <div className="w-full h-[350px] flex items-end justify-center mt-8"> 
-          <div className="w-full h-full relative">
-            <Image 
-              src="/images/nerograd.svg"
-              alt="Nero background gradient"
-              layout="fill"
-              objectFit="contain" 
-              objectPosition="bottom center" 
-              priority
-            />
+      </div>
+
+      {/* Disclaimer */}
+      <div className="border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <p className="text-white/60 text-xs leading-relaxed mb-6 max-w-5xl">
+            Leifson Insurance is a marketing company offering a wide range of insurance products and services through a network of independent affiliates. We do not provide legal, tax, or investment advice. Insurance products are offered through Leifson Insurance and its affiliated partners, subject to underwriting approval and availability by state. Leifson Insurance is licensed in all 50 U.S. states and the District of Columbia.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-between items-center">
+            <p className="text-white/60 text-sm">
+              &copy; {currentYear} Leifson Insurance. All rights reserved.
+            </p>
+            <div className="flex space-x-6 mt-4 sm:mt-0">
+              <Link href="/privacy" className="text-white/60 hover:text-white text-sm transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="text-white/60 hover:text-white text-sm transition-colors">
+                Terms of Service
+              </Link>
+            </div>
           </div>
         </div>
       </div>

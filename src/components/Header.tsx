@@ -58,7 +58,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
-              <Image src="/Liefson.svg" alt="Liefson Logo" width={96} height={23} /> {/* Back to original logo size */}
+              <Image src="/Leifson.svg" alt="Liefson Logo" width={115} height={36} /> {/* Scaled up logo further */}
             </Link>
           </div>
 
@@ -106,7 +106,7 @@ const Header: React.FC = () => {
                 whileHover={{ scale: 1.03, opacity: 0.95 }}
                 transition={{ type: 'spring', stiffness: 300 }}
               >
-                <span className="font-serif font-semibold pl-2 text-base">Get a quote</span>
+                <span className="font-sans font-regular pl-2 text-base">Get a quote</span>
                 <span 
                   className="bg-liefson-white text-liefson-primary rounded-full w-8 h-8 flex items-center justify-center text-md"
                 >

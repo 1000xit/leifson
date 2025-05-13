@@ -43,3 +43,28 @@ body {
     @apply font-serif; /* This will use --font-frank-ruhl-libre from layout.tsx */
   }
 } 
+
+.logo-carousel-container {
+  position: relative; /* Needed for absolute positioning of pseudo-elements */
+}
+
+.logo-carousel-container::before,
+.logo-carousel-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px; /* Adjust width of the fade effect */
+  z-index: 2; /* Above the logos but below anything else like a page scrollbar */
+  pointer-events: none; /* Allow clicks to pass through */
+}
+
+.logo-carousel-container::before {
+  left: 0;
+  background: linear-gradient(to right, white 20%, rgba(255, 255, 255, 0) 100%);
+}
+
+.logo-carousel-container::after {
+  right: 0;
+  background: linear-gradient(to left, white 20%, rgba(255, 255, 255, 0) 100%);
+} 

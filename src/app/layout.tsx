@@ -29,8 +29,8 @@ const frankRuhlLibre = Frank_Ruhl_Libre({
 });
 
 export const metadata: Metadata = {
-  title: "Nero Landing Page", // Updated title
-  description: "Run your music livestreams on autopilot.", // Updated description
+  title: "Leifson Insurance - Protect What Matters Most", // Updated title
+  description: "Licensed in all 50 states, Leifson Insurance offers comprehensive coverage with access to over 20 top-rated insurance carriers. Protect your family and future with us.", // Updated description
 };
 
 export default function RootLayout({
