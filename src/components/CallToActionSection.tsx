@@ -23,6 +23,7 @@ const CallToActionSection: React.FC = () => {
         
         <div className="flex justify-center w-full mt-8 md:mt-10">
           <motion.button 
+            onClick={() => window.location.href = "/contact"}
             initial={{ opacity: 0, y: 30, scale: 0.9 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             transition={{

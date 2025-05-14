@@ -31,6 +31,10 @@ const frankRuhlLibre = Frank_Ruhl_Libre({
 export const metadata: Metadata = {
   title: "Leifson Insurance - Protect What Matters Most", // Updated title
   description: "Licensed in all 50 states, Leifson Insurance offers comprehensive coverage with access to over 20 top-rated insurance carriers. Protect your family and future with us.", // Updated description
+  icons: {
+    icon: "/leifson.png",
+    apple: "/leifson.png",
+  },
 };
 
 export default function RootLayout({

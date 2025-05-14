@@ -4,9 +4,37 @@
 
 /* Removed Oskari Font Definitions - Handled by next/font in layout.tsx */
 
+html {
+  scroll-behavior: smooth; /* Enable smooth scrolling for the entire page */
+}
+
 body {
   background-color: #FFFFFF; /* Ensure plain white background */
   /* You can add default text color here if needed, e.g., color: #000000; */
+}
+
+/* Form Styles */
+input, select, textarea {
+  @apply border border-gray-300 rounded-md;
+}
+
+/* Custom Select Styling */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%2300112A' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+}
+
+select:focus {
+  @apply ring-2 ring-liefson-primary-light border-liefson-primary;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23C7E4FF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+}
+
+/* Enhancement for select placeholder styling */
+select option[value=""][disabled] {
+  color: #6B7280;
 }
 
 /* Removed .hero-section-gradient::after rule */
@@ -67,4 +95,22 @@ body {
 .logo-carousel-container::after {
   right: 0;
   background: linear-gradient(to left, white 20%, rgba(255, 255, 255, 0) 100%);
+} 
+
+/* Testimonial scrolling container styles */
+.testimonial-scroll-container {
+  position: relative;
+}
+
+/* Pause animation on hover for better user experience */
+.testimonial-scroll-container:hover .testimony-scroll {
+  animation-play-state: paused;
+}
+
+/* Line clamp utility for testimonial text */
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 } 

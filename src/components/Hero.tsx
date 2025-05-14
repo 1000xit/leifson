@@ -127,6 +127,7 @@ const Hero = () => {
           </motion.p>
           <motion.div variants={itemVariants}>
             <motion.button
+              onClick={() => window.location.href = "/contact"}
               className="bg-liefson-primary-light text-liefson-primary transition-opacity px-3 py-1.5 rounded-full flex items-center space-x-3 text-sm font-medium mx-auto md:mx-0"
               whileHover="hover"
               initial="rest"

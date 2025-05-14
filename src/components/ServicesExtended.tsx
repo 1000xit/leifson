@@ -11,6 +11,7 @@ import {
   Umbrella,
   FileText
 } from 'lucide-react';
+import CalendlyDialog from './CalendlyDialog';
 
 // Define the service data type explicitly for better type safety
 interface ServiceData {
@@ -145,6 +146,9 @@ const servicesExtendedData: ServiceData[] = [
 // --- Main Component ---
 const ServicesExtended: React.FC = () => {
   const [activeServiceId, setActiveServiceId] = useState<string>(servicesExtendedData[0].id);
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+  
+  const calendlyUrl = "https://calendly.com/amplifi-financial/15min";
   
   // Get the currently active service data
   const activeService = servicesExtendedData.find(service => service.id === activeServiceId) || servicesExtendedData[0];
@@ -162,188 +166,202 @@ const ServicesExtended: React.FC = () => {
   };
 
   return (
-    <motion.section
-      className="py-16 md:py-24 bg-white relative" 
-      variants={sectionContainerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-    >
-      {/* Add all styles in a single global style tag at the component level */}
-      <style jsx global>{`
-        /* Scrollbar styles for Webkit browsers */
-        .custom-scrollbar::-webkit-scrollbar {
-          height: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background-color: rgba(203, 213, 225, 0.4);
-          border-radius: 20px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background-color: rgba(203, 213, 225, 0.7);
-        }
-        
-        /* Firefox scrollbar styles */
-        .custom-scrollbar {
-          scrollbar-width: thin;
-          scrollbar-color: rgba(203, 213, 225, 0.4) transparent;
-        }
-        
-        /* Float animation for decorative elements */
-        @keyframes float-slow {
-          0% { transform: translateY(0) translateX(0) rotate(0); }
-          33% { transform: translateY(-8px) translateX(5px) rotate(2deg); }
-          66% { transform: translateY(4px) translateX(-4px) rotate(-1deg); }
-          100% { transform: translateY(0) translateX(0) rotate(0); }
-        }
-        .animate-float-slow {
-          animation: float-slow 8s ease-in-out infinite;
-        }
-        .animation-delay-1000 {
-          animation-delay: 1s;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-      `}</style>
+    <>
+      <CalendlyDialog 
+        isOpen={isCalendlyOpen} 
+        onClose={() => setIsCalendlyOpen(false)} 
+        calendlyUrl={calendlyUrl}
+      />
+      <motion.section
+        id="services"
+        className="py-16 md:py-24 bg-white relative" 
+        variants={sectionContainerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+      >
+        {/* Add all styles in a single global style tag at the component level */}
+        <style jsx global>{`
+          /* Scrollbar styles for Webkit browsers */
+          .custom-scrollbar::-webkit-scrollbar {
+            height: 4px;
+          }
+          .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+          }
+          .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(203, 213, 225, 0.4);
+            border-radius: 20px;
+          }
+          .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(203, 213, 225, 0.7);
+          }
+          
+          /* Firefox scrollbar styles */
+          .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(203, 213, 225, 0.4) transparent;
+          }
+          
+          /* Float animation for decorative elements */
+          @keyframes float-slow {
+            0% { transform: translateY(0) translateX(0) rotate(0); }
+            33% { transform: translateY(-8px) translateX(5px) rotate(2deg); }
+            66% { transform: translateY(4px) translateX(-4px) rotate(-1deg); }
+            100% { transform: translateY(0) translateX(0) rotate(0); }
+          }
+          .animate-float-slow {
+            animation: float-slow 8s ease-in-out infinite;
+          }
+          .animation-delay-1000 {
+            animation-delay: 1s;
+          }
+          .animation-delay-2000 {
+            animation-delay: 2s;
+          }
+        `}</style>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-         {/* --- Section Header --- */}
-         <motion.div
-            className="text-center mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-         >
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-liefson-dark-text font-semibold mb-4 tracking-tight">
-            Explore Our Solutions
-          </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Select a service to learn more about our offerings.
-          </p>
-        </motion.div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+           {/* --- Section Header --- */}
+           <motion.div
+              className="text-center mb-10"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+           >
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-liefson-dark-text font-semibold mb-4 tracking-tight">
+              Explore Our Solutions
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+              Select a service to learn more about our offerings.
+            </p>
+          </motion.div>
 
-        {/* --- Tab Navigation (Desktop) --- */}
-        <div className="hidden md:block w-full mb-8 relative">
-          <div 
-            className="overflow-x-auto pb-1 custom-scrollbar px-3"
-          >
-            <div className="inline-flex flex-nowrap space-x-2 pl-1 pt-3 pb-1">
-              {servicesExtendedData.map((service) => (
-                <button
-                  key={service.id}
-                  onClick={() => setActiveServiceId(service.id)}
-                  className={`flex items-center whitespace-nowrap px-4 py-2 text-sm font-medium rounded-full transition-all duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-liefson-primary
-                    ${activeServiceId === service.id
-                      ? 'bg-liefson-primary text-white shadow-sm' 
-                      : 'bg-gray-50 text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                    }
-                  `}
-                >
-                  <service.Icon
-                    className="mr-2 h-4 w-4 flex-shrink-0"
-                    aria-hidden="true"
-                    strokeWidth={activeServiceId === service.id ? 2 : 1.5}
-                  />
-                  <span>{service.title}</span>
-                </button>
-              ))}
+          {/* --- Tab Navigation (Desktop) --- */}
+          <div className="hidden md:block w-full mb-8 relative">
+            <div 
+              className="overflow-x-auto pb-1 custom-scrollbar px-3"
+            >
+              <div className="inline-flex flex-nowrap space-x-2 pl-1 pt-3 pb-1">
+                {servicesExtendedData.map((service) => (
+                  <button
+                    key={service.id}
+                    onClick={() => setActiveServiceId(service.id)}
+                    className={`flex items-center whitespace-nowrap px-4 py-2 text-sm font-medium rounded-full transition-all duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-liefson-primary
+                      ${activeServiceId === service.id
+                        ? 'bg-liefson-primary text-white shadow-sm' 
+                        : 'bg-gray-50 text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                      }
+                    `}
+                  >
+                    <service.Icon
+                      className="mr-2 h-4 w-4 flex-shrink-0"
+                      aria-hidden="true"
+                      strokeWidth={activeServiceId === service.id ? 2 : 1.5}
+                    />
+                    <span>{service.title}</span>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* --- Mobile Navigation (Dropdown) --- */}
-        <div className="md:hidden mb-6">
-          <select
-            value={activeServiceId}
-            onChange={(e) => setActiveServiceId(e.target.value)}
-            className="block w-full pl-3 pr-10 py-3 text-base border border-gray-300 focus:outline-none focus:ring-liefson-primary focus:border-liefson-primary rounded-md shadow-sm"
-          >
-            {servicesExtendedData.map(service => (
-              <option key={service.id} value={service.id}>
-                {service.title}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* The Glass Card - Enhanced with more depth and visual interest */}
-        <motion.div
-          className="rounded-xl overflow-hidden relative mx-auto"
-          initial={false}
-        >
-          {/* Card Background Layers */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/70 to-white/60 backdrop-blur-md z-0"></div>
-          
-          {/* Enhanced Border */}
-          <div className="absolute inset-0 rounded-xl border border-white/30 z-10"></div>
-          <div className="absolute inset-0 rounded-xl border-t border-l border-white/50 z-10" 
-               style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }}></div>
-          <div className="absolute inset-0 rounded-xl border-r border-b border-black/5 z-10" 
-               style={{ clipPath: 'polygon(100% 100%, 0 100%, 100% 0)' }}></div>
-               
-          {/* Ambient Light Effect */}
-          <div className="absolute -top-[40%] -right-[20%] w-[70%] h-[70%] bg-liefson-primary/15 rounded-full blur-3xl z-0 opacity-70"></div>
-          <div className="absolute -bottom-[30%] -left-[20%] w-[60%] h-[60%] bg-liefson-light-blue/20 rounded-full blur-3xl z-0 opacity-60"></div>
-          
-          {/* Decorative Elements */}
-          <div className="absolute top-[5%] left-[7%] w-20 h-20 border border-white/20 rounded-full z-0 opacity-40 animate-float-slow"></div>
-          <div className="absolute bottom-[8%] right-[10%] w-12 h-12 border border-white/30 rounded-full z-0 opacity-30 animate-float-slow animation-delay-1000"></div>
-          <div className="absolute top-[20%] right-[15%] w-8 h-8 bg-liefson-primary/10 rounded-full z-0 blur-sm animate-float-slow animation-delay-2000"></div>
-          
-          {/* Glass Frost Effect */}
-          <div className="absolute inset-x-0 top-0 h-[10%] bg-gradient-to-b from-white/40 to-transparent z-0"></div>
-          <div className="absolute inset-y-0 left-0 w-[10%] bg-gradient-to-r from-white/30 to-transparent z-0"></div>
-          
-          {/* Main Card Content Container */}
-          <div className="relative shadow-sm min-h-[350px] sm:min-h-[400px] md:min-h-[500px] z-20">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeServiceId}
-                className="px-5 py-6 sm:px-7 sm:py-8 md:p-10 relative backdrop-blur-sm"
-                variants={cardContentVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-              >
-                {/* Card Title Section with enhanced styling */}
-                <div className="relative mb-4 sm:mb-6 pb-3 sm:pb-5 border-b border-liefson-primary/10">
-                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold font-serif text-liefson-dark-text">
-                    {activeService.fullTitle}
-                  </h3>
-                  <div className="absolute -bottom-1 left-0 w-12 sm:w-16 h-[3px] bg-liefson-primary rounded-full"></div>
-                </div>
-                
-                {/* Card Content */}
-                <div className="prose prose-sm sm:prose-base md:prose-lg max-w-none text-gray-800 font-sans text-base leading-relaxed">
-                  {activeService.content}
-                </div>
-              </motion.div>
-            </AnimatePresence>
+          {/* --- Mobile Navigation (Dropdown) --- */}
+          <div className="md:hidden mb-6">
+            <select
+              value={activeServiceId}
+              onChange={(e) => setActiveServiceId(e.target.value)}
+              className="block w-full pl-3 pr-10 py-3 text-base border border-gray-300 focus:outline-none focus:ring-liefson-primary focus:border-liefson-primary rounded-md shadow-sm"
+            >
+              {servicesExtendedData.map(service => (
+                <option key={service.id} value={service.id}>
+                  {service.title}
+                </option>
+              ))}
+            </select>
           </div>
-        </motion.div>
 
-        {/* Call to Action Buttons */}
-        <motion.div
-          className="mt-8 sm:mt-12 text-center space-y-3 sm:space-y-4 md:space-y-0 md:space-x-4"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <button className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-liefson-primary hover:bg-liefson-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-liefson-primary transition duration-150 ease-in-out">
-            Find The Best Rate
-          </button>
-          <button className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 border border-liefson-primary text-base font-medium rounded-full text-liefson-primary bg-white hover:bg-liefson-light-blue/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-liefson-primary transition duration-150 ease-in-out">
-            Call Today
-          </button>
-        </motion.div>
-      </div>
-    </motion.section>
+          {/* The Glass Card - Enhanced with more depth and visual interest */}
+          <motion.div
+            className="rounded-xl overflow-hidden relative mx-auto"
+            initial={false}
+          >
+            {/* Card Background Layers */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/70 to-white/60 backdrop-blur-md z-0"></div>
+            
+            {/* Enhanced Border */}
+            <div className="absolute inset-0 rounded-xl border border-white/30 z-10"></div>
+            <div className="absolute inset-0 rounded-xl border-t border-l border-white/50 z-10" 
+                 style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }}></div>
+            <div className="absolute inset-0 rounded-xl border-r border-b border-black/5 z-10" 
+                 style={{ clipPath: 'polygon(100% 100%, 0 100%, 100% 0)' }}></div>
+                 
+            {/* Ambient Light Effect */}
+            <div className="absolute -top-[40%] -right-[20%] w-[70%] h-[70%] bg-liefson-primary/15 rounded-full blur-3xl z-0 opacity-70"></div>
+            <div className="absolute -bottom-[30%] -left-[20%] w-[60%] h-[60%] bg-liefson-light-blue/20 rounded-full blur-3xl z-0 opacity-60"></div>
+            
+            {/* Decorative Elements */}
+            <div className="absolute top-[5%] left-[7%] w-20 h-20 border border-white/20 rounded-full z-0 opacity-40 animate-float-slow"></div>
+            <div className="absolute bottom-[8%] right-[10%] w-12 h-12 border border-white/30 rounded-full z-0 opacity-30 animate-float-slow animation-delay-1000"></div>
+            <div className="absolute top-[20%] right-[15%] w-8 h-8 bg-liefson-primary/10 rounded-full z-0 blur-sm animate-float-slow animation-delay-2000"></div>
+            
+            {/* Glass Frost Effect */}
+            <div className="absolute inset-x-0 top-0 h-[10%] bg-gradient-to-b from-white/40 to-transparent z-0"></div>
+            <div className="absolute inset-y-0 left-0 w-[10%] bg-gradient-to-r from-white/30 to-transparent z-0"></div>
+            
+            {/* Main Card Content Container */}
+            <div className="relative shadow-sm min-h-[350px] sm:min-h-[400px] md:min-h-[500px] z-20">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeServiceId}
+                  className="px-5 py-6 sm:px-7 sm:py-8 md:p-10 relative backdrop-blur-sm"
+                  variants={cardContentVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                >
+                  {/* Card Title Section with enhanced styling */}
+                  <div className="relative mb-4 sm:mb-6 pb-3 sm:pb-5 border-b border-liefson-primary/10">
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold font-serif text-liefson-dark-text">
+                      {activeService.fullTitle}
+                    </h3>
+                    <div className="absolute -bottom-1 left-0 w-12 sm:w-16 h-[3px] bg-liefson-primary rounded-full"></div>
+                  </div>
+                  
+                  {/* Card Content */}
+                  <div className="prose prose-sm sm:prose-base md:prose-lg max-w-none text-gray-800 font-sans text-base leading-relaxed">
+                    {activeService.content}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </motion.div>
+
+          {/* Call to Action Buttons */}
+          <motion.div
+            className="mt-8 sm:mt-12 text-center space-y-3 sm:space-y-4 md:space-y-0 md:space-x-4"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <button 
+              onClick={() => window.location.href = "/contact"}
+              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-liefson-primary hover:bg-liefson-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-liefson-primary transition duration-150 ease-in-out"
+            >
+              Find The Best Rate
+            </button>
+            <button 
+              onClick={() => setIsCalendlyOpen(true)}
+              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 border border-liefson-primary text-base font-medium rounded-full text-liefson-primary bg-white hover:bg-liefson-light-blue/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-liefson-primary transition duration-150 ease-in-out"
+            >
+              Call Today
+            </button>
+          </motion.div>
+        </div>
+      </motion.section>
+    </>
   );
 };
 

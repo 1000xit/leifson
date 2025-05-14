@@ -2,6 +2,7 @@ import React from 'react';
 import Hero from '@/components/Hero';
 import LogoCarousel from '@/components/LogoCarousel';
 import Services from '@/components/Services';
+import Testimonials from '@/components/Testimonials';
 import ServicesExtended from '@/components/ServicesExtended';
 import CTASection from '@/components/cta-section';
 import FAQ from '@/components/FAQ';
@@ -13,6 +14,7 @@ export default function HomePage() {
       <Hero />
       <LogoCarousel />
       <Services />
+      <Testimonials />
       <ServicesExtended />
       <FAQ />
       <CTASection />

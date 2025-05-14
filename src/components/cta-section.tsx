@@ -17,6 +17,7 @@ const CTASection: React.FC = () => {
 
   return (
     <motion.section 
+      id="contact"
       className="bg-liefson-white py-20 md:py-28 relative overflow-hidden"
       variants={sectionVariants}
       initial="hidden"
@@ -243,11 +244,12 @@ const CTASection: React.FC = () => {
         
         {/* Desktop version (hidden on small screens) - Keep this the same */}
         <h2 className="hidden sm:block font-serif text-4xl sm:text-5xl lg:text-6xl text-liefson-dark-text font-semibold tracking-tight leading-tight mb-8">
-          <span className="block pb-2">let's protect your family—</span>
+          <span className="block pb-2">Let's protect your family —</span>
           <span className="block">
             <span className="align-middle">get a&nbsp;</span>
-            <span className="inline-block align-middle mx-1 transform translate-y-[-0.075em] sm:translate-y-[-0.1em] pt-2">
-              <motion.button
+            <span className="inline-block align-middle mx-1 transform translate-y-[-0.075em] sm:translate-y-[-0.1em] pt-3">
+              <motion.button 
+                onClick={() => window.location.href = "/contact"}
                 className="bg-liefson-primary-light text-liefson-primary transition-opacity px-3 py-1.5 rounded-full flex items-center space-x-3 text-sm font-medium transform focus:outline-none focus:ring-2 focus:ring-liefson-primary-light focus:ring-offset-2 focus:ring-offset-liefson-white"
                 whileHover="hover"
                 initial="rest"
@@ -273,9 +275,10 @@ const CTASection: React.FC = () => {
         {/* Mobile version (hidden on larger screens) - Simplified with natural flowing text */}
         <div className="sm:hidden text-center mb-8">
           <h2 className="font-serif text-3xl text-liefson-dark-text font-semibold tracking-tight leading-tight mb-6">
-            let's protect your family—get a free quote today
+            Let's protect your family, get a free quote today
           </h2>
           <motion.button
+            onClick={() => window.location.href = "/contact"}
             className="bg-liefson-primary-light text-liefson-primary transition-opacity px-4 py-2 rounded-full flex items-center space-x-3 text-sm font-medium mx-auto transform focus:outline-none focus:ring-2 focus:ring-liefson-primary-light focus:ring-offset-2 focus:ring-offset-liefson-white"
             whileHover="hover"
             initial="rest"
