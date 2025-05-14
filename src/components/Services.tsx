@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import { ShieldCheck, Home, TrendingUp, Puzzle, ArrowUpRight, LucideIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface ServiceCardProps {
   bgColorClass: string;
@@ -51,6 +52,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   exploreButtonTextColorClass,
   index 
 }) => {
+  const router = useRouter();
+
+  const handleNavigateToContact = () => {
+    router.push('/contact');
+  };
+
   return (
     <motion.div 
       className={`relative flex flex-col h-full p-6 ${bgColorClass} rounded-xl shadow-md min-h-[320px] md:min-h-[380px] overflow-hidden cursor-default`}
@@ -71,6 +78,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       </motion.div>
 
       <motion.button
+        onClick={handleNavigateToContact}
         className={`flex items-center space-x-2 px-4 py-2 rounded-full border ${exploreButtonTextColorClass} border-white/30 bg-gradient-to-br from-white/70 to-white/50 backdrop-blur-sm text-xs font-medium focus:outline-none whitespace-nowrap`}
         style={{ 
           position: 'absolute',
