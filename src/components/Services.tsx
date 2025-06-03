@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { ShieldCheck, Home, TrendingUp, Puzzle, ArrowUpRight, LucideIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -60,11 +60,15 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
   return (
     <motion.div 
-      className={`relative flex flex-col h-full p-6 ${bgColorClass} rounded-xl shadow-md min-h-[320px] md:min-h-[380px] overflow-hidden cursor-default`}
+      className={`relative flex flex-col h-full p-6 ${bgColorClass} rounded-xl shadow-md min-h-[320px] md:min-h-[380px] overflow-hidden cursor-pointer`}
       variants={cardScrollVariants}
       custom={index}
       initial="rest"
+      animate={isHovered ? "hover" : "rest"}
       whileHover="hover"
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      onClick={() => setIsHovered(!isHovered)}
     >
       <motion.div className="flex flex-col flex-grow" variants={cardContentVariants}>
         <div className={`mb-auto ${iconCustomColorClass || textColorClass}`}>
